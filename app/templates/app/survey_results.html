@@ -1,0 +1,17 @@
+<h1>Results for {{ survey.title }}</h1>
+<ul>
+    {% for result in results %}
+        <li>
+            <strong>{{ result.question.text }}</strong>
+            <ul>
+                {% for response in result.responses %}
+                    <li>{{ response.user.username }}: {{ response.answer }}</li>
+                {% empty %}
+                    <li>No responses yet.</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'survey_list' %}">Back to Surveys</a>
+<a href="{% url 'logout' %}">Logout</a>

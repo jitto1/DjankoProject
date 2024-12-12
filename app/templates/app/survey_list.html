@@ -1,0 +1,20 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Your Surveys</h1>
+<ul class="list-group">
+    {% for survey in surveys %}
+        <li class="list-group-item">
+            <strong>{{ survey.title }}</strong>: {{ survey.description }}
+            <div>
+                <a class="btn btn-primary btn-sm" href="{% url 'question_list' survey.id %}">Manage Questions</a>
+                <a class="btn btn-success btn-sm" href="{% url 'response_create' survey.id %}">Respond</a>
+                <a class="btn btn-info btn-sm" href="{% url 'survey_results' survey.id %}">Results</a>
+            </div>
+        </li>
+    {% empty %}
+        <li class="list-group-item">No surveys available. <a href="{% url 'survey_create' %}">Create one now</a>.</li>
+    {% endfor %}
+</ul>
+<a class="btn btn-secondary mt-3" href="{% url 'survey_create' %}">Create a new survey</a>
+{% endblock %}

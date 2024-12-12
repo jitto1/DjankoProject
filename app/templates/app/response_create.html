@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1>Respond to {{ survey.title }}</h1>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    {% for question in questions %}
+        <div class="mb-3">
+            <label for="question_{{ question.id }}" class="form-label">{{ question.text }}</label>
+            <textarea name="question_{{ question.id }}" id="question_{{ question.id }}" class="form-control" rows="3" required></textarea>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a class="btn btn-secondary" href="{% url 'survey_list' %}">Back</a>
+</form>
+{% endblock %}

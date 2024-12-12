@@ -1,0 +1,11 @@
+<h1>Questions for {{ survey.title }}</h1>
+<ul>
+    {% for question in questions %}
+        <li>{{ question.text }}</li>
+    {% empty %}
+        <li>No questions available.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'question_create' survey.id %}">Add a Question</a>
+<a href="{% url 'survey_list' %}">Back to Surveys</a>
+<a href="{% url 'logout' %}">Logout</a>
